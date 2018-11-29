@@ -1,0 +1,7 @@
+We choose the designed data type in the struct because of the specific format of polynomials. That is the fact you can have x^4 + x^3 + x^2 +x or also x^4 straight to x^2. We choose type double again because of what type of numbers polynomials work with. We choose a dynamic array as we are most familiar with this type of structure and we beilieve it will give us results the fastest by way of pointers, rather than link list which must find memory by proceding through a series of nodes.
+
+Creation.c-We need to create a function to create a polynomial. Polynomials are made up of coefficients and lengths-these are the parameters. repeat until i is < than length-make coefficient2 at position i change coefficients at position i. 
+
+deletePolynomial-The easiest way to delete a polynomial would be to wipe the memory it is associated with. 
+
+
