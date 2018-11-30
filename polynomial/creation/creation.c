@@ -1,5 +1,5 @@
 #include "creation.h"
-	
+
 /////////////////////////////////////////////////////////
 // polynomial* createPolynomial(double* coefficients, int length)
 // creates a new polynomial from the coefficient values and length that are passed
@@ -10,13 +10,13 @@
 // parameter: int length - the length of the passed coefficients array
 // return: polynomial* - pointer to the created polynomial struct
 /////////////////////////////////////////////////////////
-polynomial* createPolynomial(double* coefficients, int length)
+polynomial *createPolynomial(double *coefficients, int length)
 {
-    polynomial* pol;
+    polynomial *pol;
     pol = malloc(sizeof(polynomial));
-    double* coefficients2 = malloc(sizeof(double) * length);
-	
-    for(int i = 0; i < length; i++)
+    double *coefficients2 = malloc(sizeof(double) * length);
+
+    for (int i = 0; i < length; i++)
     {
         coefficients2[i] = coefficients[i];
     }
@@ -26,6 +26,7 @@ polynomial* createPolynomial(double* coefficients, int length)
 
     return pol;
 }
+
 /////////////////////////////////////////////////////////
 // void deletePolynomial(polynomial* pol)
 // frees all memory associated with the passed polynomial
@@ -33,7 +34,7 @@ polynomial* createPolynomial(double* coefficients, int length)
 // parameter: polynomial* pol - pointer to the polynomial to be deleted
 // return: void
 /////////////////////////////////////////////////////////
-void deletePolynomial(polynomial* pol)
+void deletePolynomial(polynomial *pol)
 {
     free(pol->coefficients);
     free(pol);

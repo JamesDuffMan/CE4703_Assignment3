@@ -1,15 +1,120 @@
-We choose the designed data type in the struct because of the specific format of polynomials. That is the fact you can have x^4 + x^3 + x^2 +x or also x^4 straight to x^2. We choose type double again because of what type of numbers polynomials work with. We choose a dynamic array as we are most familiar with this type of structure and we beilieve it will give us results the fastest by way of pointers, rather than link list which must find memory by proceding through a series of nodes.
-
-Creation.c-We need to create a function to create a polynomial. Polynomials are made up of coefficients and lengths-these are the parameters. repeat until i is < than length-make coefficient2 at position i change coefficients at position i. 
-
-deletePolynomial-The easiest way to delete a polynomial would be to wipe the memory it is associated with. 
-
-calculations.c - Includes the functions addPolynomials, subtractPolynomials, multiplyPolynomial, dividePolynomial
-                 normalizePolynomial and getPolynomialOrder. More details to each function is stated in the file.
-                 Its main use, is to perform the calulcations stated in the assignment, and allocate memory for the
-                 altered polynomials. The output of each function is a new, altered polynomial, which gets added to the 
-                 collection of other polynomials.
+polynomial data type:
+We choose the designed data type in the struct because of the specific format of polynomials. That is the fact you can have x^4 + x^3 + x^2 +x or also x^4 straight to x^2. We choose type double again because of what type of numbers polynomials work with. We choose a dynamic array as we are most familiar with this type of structure and we beilieve it will give us results the fastest by way of pointers, rather than link list which must find memory by proceding through a series of nodes. Our polynomial struct consists of a pointer to a double array: coefficients and an integer: length. The array referenced by the pointer contains all the coefficients of the polynomial where pol->coefficients[x] is the coefficient for xth order. The integer length is used to not leave the array boundaries when traversing it.
                  
-                 
+specifications:
+ 
+createPolynomial:
+input: double* coefficients, int length
+	coefficients points to an array of double values
+	the array has the length of the input "length"
+output: polynomial* pol
+	pol is a pointer to a newly created polynomial.
+	the values in pol->coefficient are the same as the values in the input array coefficients.
+	the pointer stored in pol is not the same as the input pointer.
+
+deletePolynomial:
+input: polynomial* pol
+	pol is a pointer to a initialized polynomial struct.
+output: void
+	all memory associated with pol has been freed, that means the struct itself as well as the array the coefficients pointer is referencing.
+
+addPolynomials:
+input: polynomial* pol1, polynomial* pol2
+	pol1 and pol2 are initialized pointers to polynomial structs.
+output: polynomial pol
+	pol is a pointer to a newly created polynomial with such coefficient values that pol1 + pol2 = pol
+
+subtractPolynomials:
+input: polynomial* pol1, polynomial* pol2
+	pol1 and pol2 are initialized pointers to polynomial structs.
+output: polynomial pol
+	pol is a pointer to a newly created polynomial with such coefficient values that pol1 - pol2 = pol
+
+multiplyPolynomial:
+input: polynomial* pol1, double factor
+	pol1 is a pointer to an initialized polynomial struct.
+	factor is a floating point number in the double domain.
+output: polynomial* pol
+	pol is a pointer to a newly created polynomial with such coefficient values that pol1 * factor = pol
+
+dividePolynomial:
+input: polynomial* pol1, double factor
+	pol1 is a pointer to an initialized polynomial struct.
+	factor is a floating point number in the double domain.
+	factor is not zero.
+output: polynomial* pol
+	pol is a pointer to a newly created polynomial with such coefficient values that pol1 / factor = pol
+
+normalizePolynomial:
+input: polynomial* pol1
+	pol1 is a pointer to an initialized polynomial struct.
+	pol1->length is not zero.
+output: polynomial* pol
+	pol is a pointer to a newly created polynomial with such coefficient values that x in R exists with pol1 * x = pol AND pol->coefficients[0] = 1
+
+getPolynomialOrder:
+input: polynomial* pol
+	pol1 is a pointer to an initialized polynomial struct.
+output: int order
+	order is equal to the biggest i in (0,pol->length-1) with i != 0
+	if such i doesnt exist order = 0 
 
 
+
+pseudocode:
+
+FUNCTION addPolynomials(pol1, pol2)
+	length := max(pol1.length,pol2.length)
+	pol := create polynomial of length length
+	for i = 0 to length-1 do
+		pol coefficient[i] := 0;
+		add pol1 coefficient[i] if available to pol coefficient[i].
+		add pol2 coefficient[i] if available to pol coefficient[i].
+	END
+	return pol
+END
+
+FUNCTION subtractPolynomials(pol1, pol2)
+	length := max(pol1.length,pol2.length)
+	pol := create polynomial of length length
+	for i = 0 to length-1 do
+		pol coefficient[i] := 0;
+		add pol1 coefficient[i] if available to pol coefficient[i].
+		subtract pol2 coefficient[i] if available from pol coefficient[i].
+	END
+	return pol
+END
+
+FUNCTION multiplyPolynomial(pol1, factor)
+	length := max(pol1.length,pol2.length)
+	pol := create polynomial of length length
+	for i = 0 to length-1 do
+		pol coefficient[i] := pol1 coefficient[i] * factor;
+	END
+	return pol
+END
+
+FUNCTION dividePolynomial(pol1, factor)
+	length := max(pol1.length,pol2.length)
+	pol := create polynomial of length length
+	for i = 0 to length-1 do
+		pol coefficient[i] := pol1 coefficient[i] / factor;
+	END
+	return pol
+END
+
+FUNCTION normalizePolynomial(pol1)
+	order := getPolynomialOrder(pol1)
+	coeff := pol1 coefficient[order]
+	pol := dividePolynomial(pol1, coeff)
+	return pol
+END
+
+FUNCTION getPolynomialOrder(pol1)
+	length := length of pol1 
+	for i = length-1 to 0 do
+		if (pol coefficient[i] is not 0)
+			return i
+	END
+	return 0
+END
