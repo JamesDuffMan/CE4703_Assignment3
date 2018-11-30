@@ -1,6 +1,13 @@
 #include "visualization.h"
 
 
+/////////////////////////////////////////////////////////
+// void printPolynomial(polynomial* pol)
+// prints the passed polynomial to stdout
+// 
+// parameter: polynomial* pol - pointer to the polynomial to be printed
+// return: void
+/////////////////////////////////////////////////////////
 void printPolynomial(polynomial* pol)
 {
     

@@ -19,7 +19,6 @@
 
 // declare "public" function interfaces
 int testCreation();
-int testDeletion();
 int testAddition();
 int testSubtraction();
 int testMultiplication();

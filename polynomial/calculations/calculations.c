@@ -2,6 +2,14 @@
 
 int max(int a, int b); // declaration of function
 
+/////////////////////////////////////////////////////////
+// polynomial* addPolynomials(polynomial* pol1, polynomial* pol2)
+// returns a new polynomial that is the result of the addition of the passed polynomials
+// 
+// parameter: polynomial* pol1 - pointer to the first addend polynomial
+// parameter: polynomial* pol1 - pointer to the second addend polynomial
+// return: polynomial* - pointer to the difference polynomial
+/////////////////////////////////////////////////////////
 polynomial* addPolynomials(polynomial* pol1, polynomial* pol2) // requires two polynomials
 {
     int length = max(pol1->length, pol2->length); // creates int length, which is the length of the longest polynomial
@@ -20,6 +28,14 @@ polynomial* addPolynomials(polynomial* pol1, polynomial* pol2) // requires two p
     return createPolynomial(coefficients, length); // creates new added polynomial
 }
 
+/////////////////////////////////////////////////////////
+// polynomial* subtractPolynomials(polynomial* pol1, polynomial* pol2)
+// returns a new polynomial that is the result of the subtraction of the passed polynomials
+// 
+// parameter: polynomial* pol1 - pointer to the minuend polynomial
+// parameter: polynomial* pol1 - pointer to the subtrahend polynomial
+// return: polynomial* - pointer to the difference polynomial
+/////////////////////////////////////////////////////////
 polynomial* subtractPolynomials(polynomial* pol1, polynomial* pol2) // requires two polynomials
 {
     int length = max(pol1->length, pol2->length); // creates int length, the length of the longest polynomial
@@ -38,6 +54,14 @@ polynomial* subtractPolynomials(polynomial* pol1, polynomial* pol2) // requires 
     return createPolynomial(coefficients, length); // creates one newly subtracted polynomial
 }
 
+/////////////////////////////////////////////////////////
+// polynomial* multiplyPolynomial(polynomial* pol, double factor)
+// returns a new polynomial that is the result of the multiplication of passed polynomial and number
+// 
+// parameter: polynomial* pol - pointer to the multiplicant polynomial
+// parameter: double factor - the multiplier number
+// return: polynomial* - pointer to the product polynomial
+/////////////////////////////////////////////////////////
 polynomial* multiplyPolynomial(polynomial* pol, double factor) // requires one polynomial, and a factor to multiply by
 {
     int length = pol->length; // length of polynomial
@@ -52,6 +76,14 @@ polynomial* multiplyPolynomial(polynomial* pol, double factor) // requires one p
     return createPolynomial(coefficients, length); // creates new multiplied polynomial
 }
 
+/////////////////////////////////////////////////////////
+// polynomial* dividePolynomial(polynomial* pol, double factor)
+// returns a new polynomial that is the result of the division of passed polynomial by passed number
+// 
+// parameter: polynomial* pol - pointer to the dividend polynomial
+// parameter: double factor - the divisor number
+// return: polynomial* - pointer to the quotient polynomial
+/////////////////////////////////////////////////////////
 polynomial* dividePolynomial(polynomial* pol, double factor) // requires one polynomial and a factor to divide by
 {
     int length = pol->length; // length of polynomial
@@ -66,6 +98,13 @@ polynomial* dividePolynomial(polynomial* pol, double factor) // requires one pol
     return createPolynomial(coefficients, length); // creates new divided polynomial
 }
 
+/////////////////////////////////////////////////////////
+// polynomial* normalizePolynomial(polynomial* pol)
+// returns a new polynomial that is the result of the normalization of the passed polynomial
+// 
+// parameter: polynomial* pol - pointer to the polynomial to normalize
+// return: polynomial* - pointer to the normalized version of the input polynomial
+/////////////////////////////////////////////////////////
 polynomial* normalizePolynomial(polynomial* pol) // requires one polynomial
 {
     int order = getPolynomialOrder(pol); // gets the highest order of the polynomial
@@ -76,6 +115,13 @@ polynomial* normalizePolynomial(polynomial* pol) // requires one polynomial
     
 }
 
+/////////////////////////////////////////////////////////
+// int getPolynomialOrder(polynomial* pol)
+// returns the order of the passed polynomial
+// 
+// parameter: polynomial* pol - pointer to the polynomial to get the order of
+// return: int - the order of passed polynomial
+/////////////////////////////////////////////////////////
 int getPolynomialOrder(polynomial* pol) // used in normalizePolynomial
 {
     for(int i = pol->length - 1; i >= 0; i--) // starts at the length of the polynomial, and decreases until it finds the highest order
@@ -86,6 +132,14 @@ int getPolynomialOrder(polynomial* pol) // used in normalizePolynomial
     return 0;
 }
 
+/////////////////////////////////////////////////////////
+// max(int a, int b) 
+// returns the larger of two passed integers
+// 
+// parameter: int a - one passed integer
+// parameter: int a - one passed integer
+// return: int - the bigger of the two input integers
+/////////////////////////////////////////////////////////
 int max(int a, int b) // requires two integers, used to establish the largest of two polynomials above
 {
     return (a > b ? a : b); // returns the largest of two values
