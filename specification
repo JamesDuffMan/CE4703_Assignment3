@@ -4,4 +4,12 @@ Creation.c-We need to create a function to create a polynomial. Polynomials are 
 
 deletePolynomial-The easiest way to delete a polynomial would be to wipe the memory it is associated with. 
 
+calculations.c - Includes the functions addPolynomials, subtractPolynomials, multiplyPolynomial, dividePolynomial
+                 normalizePolynomial and getPolynomialOrder. More details to each function is stated in the file.
+                 Its main use, is to perform the calulcations stated in the assignment, and allocate memory for the
+                 altered polynomials. The output of each function is a new, altered polynomial, which gets added to the 
+                 collection of other polynomials.
+                 
+                 
+
 
